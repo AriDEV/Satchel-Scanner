@@ -1,4 +1,5 @@
 -- Coded by: Exzu / EU-Aszune
+-- Updated by: Arivana / EU-Silvermoon
 
 textDatabase = {
 	ANT = { outLine = "OUTLINE", fontSize = "14", loc = "TOP", x = 0, y = 8, color = {1, 1, 1, 1}, text = "Satchel Scanner", },
@@ -42,7 +43,7 @@ local satchelsReceived;
 local showUI = true;
 
 -- Dungeon Scan Var
-local heroicVar = {"# Warlords of Draenor Heroic!", "# Not used...!"};
+local heroicVar = {"# Legion Heroic!", "# Not used...!"};
 local scanVar = {"# ...", "# Searching..."};
 local classScan = {"Not Scanning...","Scanning...","Satchel Found!"};
 local ctaVar = {"Call to Arms: Tank","Call to Arms: Healer","Call to Arms: Dps"};
@@ -179,7 +180,7 @@ function SatchelScan(self, event, arg, arg2)
 		if event == "LFG_UPDATE_RANDOM_INFO" then
 			-- Tank Scanner
 			if scanForTank then
-				if satchelFinder("tank", 789) then
+				if satchelFinder("tank", 1046) then
 					satchelFound = true;
 					textDatabase.tankScanningText.textFrame:SetText(classScan[3]);
 					textDatabase.tankScanningText.textFrame:SetTextColor(unpack(greenColor));
@@ -198,7 +199,7 @@ function SatchelScan(self, event, arg, arg2)
 			end
 			-- Healer Scanner
 			if scanForHeal then
-				if satchelFinder("heal", 789) then
+				if satchelFinder("heal", 1046) then
 					satchelFound = true;
 					textDatabase.healScanningText.textFrame:SetText(classScan[3]);
 					textDatabase.healScanningText.textFrame:SetTextColor(unpack(greenColor));
@@ -217,7 +218,7 @@ function SatchelScan(self, event, arg, arg2)
 			end
 			-- Dps Scanner
 			if scanForDps then
-				if satchelFinder("dps", 789) then
+				if satchelFinder("dps", 1046) then
 					satchelFound = true;
 					textDatabase.dpsScanningText.textFrame:SetText(classScan[3]);
 					textDatabase.dpsScanningText.textFrame:SetTextColor(unpack(greenColor));
@@ -235,7 +236,7 @@ function SatchelScan(self, event, arg, arg2)
 				end
 			end
 			if scanForDps or scanForTank or scanForHeal then
-				if not satchelFinder("tank", 789) and not satchelFinder("heal", 789) and not satchelFinder("dps", 789) then
+				if not satchelFinder("tank", 1046) and not satchelFinder("heal", 1046) and not satchelFinder("dps", 1046) then
 					satchelFound = false;
 				end
 			end
@@ -394,14 +395,14 @@ end
 -- On Load
 function SatchelScanner_OnLoad(self)
 	printm("Satchel Scanner v" .. addonVersion .. " Loaded!");
-	printm("->> Type /ss3 for commands!");
+	printm("->> Type /ss4 for commands!");
 	self:RegisterEvent("ADDON_LOADED");
 	self:RegisterEvent("LFG_UPDATE_RANDOM_INFO");
 	self:RegisterEvent("CHAT_MSG_LOOT");
 	self:SetScript("OnEvent", SatchelScan)
 	drawFrames();
 	drawText();
-	SLASH_SATCHELSCANNER1, SLASH_SATCHELSCANNER2 = "/satchelscan", "/ss3"
+	SLASH_SATCHELSCANNER1, SLASH_SATCHELSCANNER2 = "/satchelscan", "/ss4"
 	SlashCmdList.SATCHELSCANNER = function(msg)
 		if msg == "toggle" then
 			if MainFrame:IsShown() then
@@ -418,9 +419,9 @@ function SatchelScanner_OnLoad(self)
 			InterfaceOptionsFrame_OpenToCategory(SatchelScanner.childpanel);
 		else
 			printm("====== Satchel Scanner ======");
-			printm("->> Type '/ss3 toggle' to show/hide the frame");
-			printm("->> Type '/ss3 reset' to reset the addon");
-			printm("->> Type '/ss3 config' to configure the addon");
+			printm("->> Type '/ss4 toggle' to show/hide the frame");
+			printm("->> Type '/ss4 reset' to reset the addon");
+			printm("->> Type '/ss4 config' to configure the addon");
 		end
 		msg = ""
 	end
