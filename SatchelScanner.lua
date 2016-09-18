@@ -37,7 +37,7 @@ local scanForTank = true;
 local scanForHeal = true;
 local scanForDps = false;
 local runVar = {"Not Running", "Running"};
-local addonVersion = "2.3.0";
+local addonVersion = "2.3.4";
 local satchelFound = false;
 local satchelsReceived;
 local showUI = true;
@@ -171,7 +171,7 @@ function SatchelScan(self, event, arg, arg2)
 			textDatabase.bagCounter.textFrame:SetText(satchelsReceived);
 		end
 	end
-	if event == "CHAT_MSG_LOOT" and string.find(arg, "Savage Satchel of Cooperation") and not (MailFrame:IsShown() or TradeFrame:IsShown()) then
+	if event == "CHAT_MSG_LOOT" and string.find(arg, "Shattered Satchel of Cooperation") and not (MailFrame:IsShown() or TradeFrame:IsShown()) then
 		satchelsReceived = satchelsReceived + 1;
 		dbAdd("satchels", satchelsReceived);
 		textDatabase.bagCounter.textFrame:SetText(satchelsReceived);
